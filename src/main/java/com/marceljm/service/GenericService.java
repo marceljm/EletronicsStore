@@ -8,7 +8,7 @@ public interface GenericService<T> {
 
 	public T select(Class<T> clazz, Long id);
 
-	public T select(Class<T> clazz, String name);
+	public T select(Class<T> clazz, String id);
 
 	public void insert(T t);
 

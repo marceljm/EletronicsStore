@@ -6,10 +6,23 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Loja de Eletrônicos</title>
+	<title><h:outputText value="Loja de Eletrônicos" /></title>
 </h:head>
 
-<h:body style="margin:0; padding:0;">
-	<h1>Hello, World!</h1>
+<h:body style="margin:0; padding:0;vertical-align:middle;position:inline">
+
+	<p:panel>
+
+		<h:panelGrid columns="2">
+		<h:outputLabel>Categoria Principal:</h:outputLabel>
+		<p:selectOneMenu id="mainCategory"
+			value="#{homeController.selectedMainCategory}" style="width:125px">
+			<f:selectItem itemLabel="" itemValue="" />
+			<f:selectItems value="#{homeController.mainCategoryList}" />
+		</p:selectOneMenu>
+		</h:panelGrid>
+
+	</p:panel>
+
 </h:body>
 </html>

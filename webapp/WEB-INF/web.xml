@@ -30,7 +30,22 @@
 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>hot-sneaks</param-value>
+		<param-value>home</param-value>
+	</context-param>
+
+	<!-- Spring -->
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
 
 </web-app>

@@ -28,8 +28,8 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public T select(Class<T> clazz, String name) {
-		return (T) manager.createQuery("SELECT t FROM " + clazz.getSimpleName() + " t WHERE name = '" + name + "'")
+	public T select(Class<T> clazz, String id) {
+		return (T) manager.createQuery("SELECT t FROM " + clazz.getSimpleName() + " t WHERE id = '" + id + "'")
 				.getSingleResult();
 	}
 

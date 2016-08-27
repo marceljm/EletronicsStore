@@ -14,7 +14,7 @@ import com.marceljm.service.GenericService;
 public class GenericServiceImpl<T> implements GenericService<T> {
 
 	@Inject
-	GenericDAO<T> dao;
+	private GenericDAO<T> dao;
 
 	@Override
 	public List<T> select(Class<T> clazz) {
@@ -27,8 +27,8 @@ public class GenericServiceImpl<T> implements GenericService<T> {
 	}
 
 	@Override
-	public T select(Class<T> clazz, String name) {
-		return dao.select(clazz, name);
+	public T select(Class<T> clazz, String id) {
+		return dao.select(clazz, id);
 	}
 
 	@Override
