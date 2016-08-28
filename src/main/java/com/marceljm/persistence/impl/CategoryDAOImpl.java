@@ -18,7 +18,21 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> selectMainCategory() {
-		return (List<String>) manager.createQuery("SELECT DISTINCT mainCategory FROM Product ORDER BY mainCategory").getResultList();
+		return (List<String>) manager.createQuery("SELECT DISTINCT mainCategory FROM Product ORDER BY mainCategory")
+				.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> selectSubCategory(String mainCategory) {
+		return (List<String>) manager.createQuery("SELECT DISTINCT subCategory FROM Product WHERE mainCategory = '"
+				+ mainCategory + "' ORDER BY subCategory").getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> selectThirdCategory(String subCategory) {
+		return (List<String>) manager.createQuery("SELECT DISTINCT thirdCategory FROM Product WHERE subCategory = '"
+				+ subCategory + "' ORDER BY thirdCategory").getResultList();
+	}
 }

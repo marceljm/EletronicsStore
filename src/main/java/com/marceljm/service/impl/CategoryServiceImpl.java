@@ -20,4 +20,14 @@ public class CategoryServiceImpl implements CategoryService {
 		return dao.selectMainCategory();
 	}
 
+	@Override
+	public List<String> selectSubCategory(String mainCategory) {
+		return dao.selectSubCategory(mainCategory);
+	}
+
+	@Override
+	public List<String> selectThirdCategory(String subCategory) {
+		return dao.selectThirdCategory(subCategory);
+	}
+
 }

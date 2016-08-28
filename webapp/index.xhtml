@@ -7,22 +7,55 @@
 
 <h:head>
 	<title><h:outputText value="Loja de Eletrônicos" /></title>
+
+	<link rel="stylesheet" href="resources/css/style.css" type="text/css"
+		charset="utf-8" />
 </h:head>
 
-<h:body style="margin:0; padding:0;vertical-align:middle;position:inline">
+<h:body style="margin:0; padding:0">
 
-	<p:panel>
+	<h:form>
 
-		<h:panelGrid columns="2">
-		<h:outputLabel>Categoria Principal:</h:outputLabel>
-		<p:selectOneMenu id="mainCategory"
-			value="#{homeController.selectedMainCategory}" style="width:125px">
-			<f:selectItem itemLabel="" itemValue="" />
-			<f:selectItems value="#{homeController.mainCategoryList}" />
-		</p:selectOneMenu>
-		</h:panelGrid>
+		<p:panel>
 
-	</p:panel>
+			<!-- 
+			<h3 style="margin-top: 0">Basic</h3>
+			<div class="ui-g">
+				<p:repeat value="#{homeController.mainCategoryList}" var="i">
+					<div class="ui-g-6 ui-md-4 ui-lg-2">
+						<p:button value="#{i}" icon="" style="width:200px" />
+					</div>
+				</p:repeat>
+			</div>
+ -->
+
+			<h:panelGrid columns="1">
+				<h:outputLabel>Categoria Principal</h:outputLabel>
+				<p:selectOneMenu id="mainCategory"
+					value="#{homeController.selectedMainCategory}" style="width:280px"
+					filter="true" filterMatchMode="contains">
+					<p:ajax listener="#{homeController.updateSubCategory}"
+						update="subCategory,thirdCategory" />
+					<f:selectItems value="#{homeController.mainCategoryList}" />
+				</p:selectOneMenu>
+				<h:outputLabel>Categoria Secundária</h:outputLabel>
+				<p:selectOneMenu id="subCategory"
+					value="#{homeController.selectedSubCategory}" style="width:280px"
+					filter="true" filterMatchMode="contains">
+					<p:ajax listener="#{homeController.updateThirdCategory}"
+						update="thirdCategory" />
+					<f:selectItems value="#{homeController.subCategoryList}" />
+				</p:selectOneMenu>
+				<h:outputLabel>Categoria Terciária</h:outputLabel>
+				<p:selectOneMenu id="thirdCategory"
+					value="#{homeController.selectedThirdCategory}" style="width:280px"
+					filter="true" filterMatchMode="contains">
+					<f:selectItems value="#{homeController.thirdCategoryList}" />
+				</p:selectOneMenu>
+			</h:panelGrid>
+		</p:panel>
+
+	</h:form>
 
 </h:body>
 </html>

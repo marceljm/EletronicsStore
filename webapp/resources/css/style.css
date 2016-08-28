@@ -1,0 +1,7 @@
+.ui-widget, .ui-widget .ui-widget, .ui-wizard-step-title {
+	font-size: 12px;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-filter {
+	width: 265px;
+}
