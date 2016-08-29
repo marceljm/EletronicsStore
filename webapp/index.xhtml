@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
 
 <h:head>
 	<title><h:outputText value="Loja de Eletrônicos" /></title>
@@ -14,11 +15,13 @@
 
 <h:body style="margin:0; padding:0">
 
-	<h:form>
+	<pm:page>
 
-		<p:panel>
+		<h:form>
 
-			<!-- 
+			<p:panel>
+
+				<!-- 
 			<h3 style="margin-top: 0">Basic</h3>
 			<div class="ui-g">
 				<p:repeat value="#{homeController.mainCategoryList}" var="i">
@@ -29,33 +32,37 @@
 			</div>
  -->
 
-			<h:panelGrid columns="1">
-				<h:outputLabel>Categoria Principal</h:outputLabel>
-				<p:selectOneMenu id="mainCategory"
-					value="#{homeController.selectedMainCategory}" style="width:280px"
-					filter="true" filterMatchMode="contains">
-					<p:ajax listener="#{homeController.updateSubCategory}"
-						update="subCategory,thirdCategory" />
-					<f:selectItems value="#{homeController.mainCategoryList}" />
-				</p:selectOneMenu>
-				<h:outputLabel>Categoria Secundária</h:outputLabel>
-				<p:selectOneMenu id="subCategory"
-					value="#{homeController.selectedSubCategory}" style="width:280px"
-					filter="true" filterMatchMode="contains">
-					<p:ajax listener="#{homeController.updateThirdCategory}"
-						update="thirdCategory" />
-					<f:selectItems value="#{homeController.subCategoryList}" />
-				</p:selectOneMenu>
-				<h:outputLabel>Categoria Terciária</h:outputLabel>
-				<p:selectOneMenu id="thirdCategory"
-					value="#{homeController.selectedThirdCategory}" style="width:280px"
-					filter="true" filterMatchMode="contains">
-					<f:selectItems value="#{homeController.thirdCategoryList}" />
-				</p:selectOneMenu>
-			</h:panelGrid>
-		</p:panel>
+				<h:panelGrid columns="1">
+					<h:outputLabel>Categoria Principal</h:outputLabel>
+					<h:panelGrid id="mainCategory" style="width:100%">
+						<p:selectOneMenu value="#{homeController.selectedMainCategory}"
+							filter="true" filterMatchMode="contains">
+							<p:ajax listener="#{homeController.updateSubCategory}"
+								update="subCategory,thirdCategory" />
+							<f:selectItems value="#{homeController.mainCategoryList}" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<h:outputLabel>Categoria Secundária</h:outputLabel>
+					<h:panelGrid id="subCategory" style="width:100%">
+						<p:selectOneMenu value="#{homeController.selectedSubCategory}"
+							filter="true" filterMatchMode="contains">
+							<p:ajax listener="#{homeController.updateThirdCategory}"
+								update="thirdCategory" />
+							<f:selectItems value="#{homeController.subCategoryList}" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<h:panelGrid id="thirdCategory" style="width:100%">
+						<h:outputLabel rendered="#{homeController.thirdCategoryRendered}">Categoria Terciária</h:outputLabel>
+						<p:selectOneMenu value="#{homeController.selectedThirdCategory}"
+							filter="true" filterMatchMode="contains"
+							rendered="#{homeController.thirdCategoryRendered}">
+							<f:selectItems value="#{homeController.thirdCategoryList}" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</h:panelGrid>
+			</p:panel>
 
-	</h:form>
-
+		</h:form>
+	</pm:page>
 </h:body>
 </html>

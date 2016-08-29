@@ -1,6 +1,7 @@
 package com.marceljm.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -23,35 +24,51 @@ public class HomeController {
 	private List<String> subCategoryList;
 	private List<String> thirdCategoryList;
 
+	/* maps */
+	private Map<String, List<String>> mainSubCategoryMap;
+	private Map<String, List<String>> subThirdCategoryMap;
+
 	/* selection */
 	private String selectedMainCategory;
 	private String selectedSubCategory;
 	private String selectedThirdCategory;
 
+	/* render */
+	private boolean thirdCategoryRendered;
+
 	/* init */
 	@PostConstruct
 	private void init() {
-		mainCategoryList = categoryService.selectMainCategory();
-		selectedMainCategory = "Eletrônicos";
-
-		subCategoryList = categoryService.selectSubCategory(selectedMainCategory);
-		selectedSubCategory = "TV";
-
-		thirdCategoryList = categoryService.selectThirdCategory(selectedSubCategory);
-		selectedThirdCategory = "TV LED";
+		mainSubCategoryMap = categoryService.selectMapCategory(1);
+		// subThirdCategoryMap = categoryService.selectMapCategory(2);
+		//
+		// mainCategoryList = new
+		// ArrayList<String>(mainSubCategoryMap.keySet());
+		// selectedMainCategory = "Eletrônicos";
+		//
+		// subCategoryList = mainSubCategoryMap.get(selectedMainCategory);
+		// selectedSubCategory = "TV";
+		//
+		// thirdCategoryList = subThirdCategoryMap.get(selectedSubCategory);
+		// selectedThirdCategory = "TV LED";
 	}
 
 	/* listeners */
 	public void updateSubCategory() {
-		subCategoryList = categoryService.selectSubCategory(selectedMainCategory);
+		subCategoryList = mainSubCategoryMap.get(selectedMainCategory);
 		selectedSubCategory = subCategoryList.get(0);
 
 		updateThirdCategory();
 	}
 
 	public void updateThirdCategory() {
-		thirdCategoryList = categoryService.selectThirdCategory(selectedSubCategory);
+		thirdCategoryList = subThirdCategoryMap.get(selectedSubCategory);
 		selectedThirdCategory = thirdCategoryList.get(0);
+
+		if (thirdCategoryList.isEmpty() || (thirdCategoryList.size() == 1 && thirdCategoryList.get(0).isEmpty()))
+			thirdCategoryRendered = false;
+		else
+			thirdCategoryRendered = true;
 	}
 
 	/* getters */
@@ -65,6 +82,10 @@ public class HomeController {
 
 	public List<String> getThirdCategoryList() {
 		return thirdCategoryList;
+	}
+
+	public boolean isThirdCategoryRendered() {
+		return thirdCategoryRendered;
 	}
 
 	/* getters and setters */
