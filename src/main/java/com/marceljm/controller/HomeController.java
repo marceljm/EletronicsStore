@@ -1,5 +1,6 @@
 package com.marceljm.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,18 +40,17 @@ public class HomeController {
 	/* init */
 	@PostConstruct
 	private void init() {
-		mainSubCategoryMap = categoryService.selectMapCategory(1);
-		// subThirdCategoryMap = categoryService.selectMapCategory(2);
-		//
-		// mainCategoryList = new
-		// ArrayList<String>(mainSubCategoryMap.keySet());
-		// selectedMainCategory = "Eletrônicos";
-		//
-		// subCategoryList = mainSubCategoryMap.get(selectedMainCategory);
-		// selectedSubCategory = "TV";
-		//
-		// thirdCategoryList = subThirdCategoryMap.get(selectedSubCategory);
-		// selectedThirdCategory = "TV LED";
+		mainSubCategoryMap = categoryService.selectMainSubMapCategory();
+		subThirdCategoryMap = categoryService.selectSubThirdMapCategory();
+
+		mainCategoryList = new ArrayList<String>(mainSubCategoryMap.keySet());
+		selectedMainCategory = "Eletrônicos";
+
+		subCategoryList = mainSubCategoryMap.get(selectedMainCategory);
+		selectedSubCategory = "TV";
+
+		thirdCategoryList = subThirdCategoryMap.get(selectedSubCategory);
+		selectedThirdCategory = "TV LED";
 	}
 
 	/* listeners */

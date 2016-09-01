@@ -44,23 +44,28 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Map<String, List<String>> selectMapCategory(int type) {
-		if (type == 1) {
-			for (MainSubCategory i : mainSubCategoryDao.select(MainSubCategory.class)) {
-				
-				
-			};
+	public Map<String, List<String>> selectMainSubMapCategory() {
+		List<KeyValue> keyValueList = new ArrayList<KeyValue>();
+		KeyValue keyValue = new KeyValue();
+		for (MainSubCategory i : mainSubCategoryDao.select(MainSubCategory.class)) {
+			keyValue.setKey(i.getMainCategory());
+			keyValue.setValue(i.getSubCategory());
+			keyValueList.add(keyValue);
 		}
-		else {
-			subThirdCategoryDao.select(SubThirdCategory.class);
-		}
-
-		return keyValueListToMap(type == 1 ? 
-				: subThirdCategoryDAO.select(SubThirdCategory.class));
+		return keyValueListToMap(keyValueList);
 	}
-	
 
-	
+	@Override
+	public Map<String, List<String>> selectSubThirdMapCategory() {
+		List<KeyValue> keyValueList = new ArrayList<KeyValue>();
+		KeyValue keyValue = new KeyValue();
+		for (SubThirdCategory i : subThirdCategoryDao.select(SubThirdCategory.class)) {
+			keyValue.setKey(i.getSubCategory());
+			keyValue.setValue(i.getThirdCategory());
+			keyValueList.add(keyValue);
+		}
+		return keyValueListToMap(keyValueList);
+	}
 
 	private Map<String, List<String>> keyValueListToMap(List<KeyValue> keyValueList) {
 		Map<String, List<String>> map = new HashMap<String, List<String>>();

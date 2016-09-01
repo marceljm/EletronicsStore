@@ -11,5 +11,7 @@ public interface CategoryService {
 
 	public List<String> selectThirdCategory(String thirdCategory);
 
-	public Map<String, List<String>> selectMapCategory(int type);
+	public Map<String, List<String>> selectMainSubMapCategory();
+
+	public Map<String, List<String>> selectSubThirdMapCategory();
 }
