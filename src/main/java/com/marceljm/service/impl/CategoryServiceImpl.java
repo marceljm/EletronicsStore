@@ -46,8 +46,8 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public Map<String, List<String>> selectMainSubMapCategory() {
 		List<KeyValue> keyValueList = new ArrayList<KeyValue>();
-		KeyValue keyValue = new KeyValue();
-		for (MainSubCategory i : mainSubCategoryDao.select(MainSubCategory.class)) {
+		for (MainSubCategory i : dao.selectMainSubCategory()) {
+			KeyValue keyValue = new KeyValue();
 			keyValue.setKey(i.getMainCategory());
 			keyValue.setValue(i.getSubCategory());
 			keyValueList.add(keyValue);
@@ -58,8 +58,8 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public Map<String, List<String>> selectSubThirdMapCategory() {
 		List<KeyValue> keyValueList = new ArrayList<KeyValue>();
-		KeyValue keyValue = new KeyValue();
-		for (SubThirdCategory i : subThirdCategoryDao.select(SubThirdCategory.class)) {
+		for (SubThirdCategory i : dao.selectSubThirdCategory()) {
+			KeyValue keyValue = new KeyValue();
 			keyValue.setKey(i.getSubCategory());
 			keyValue.setValue(i.getThirdCategory());
 			keyValueList.add(keyValue);

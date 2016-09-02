@@ -21,20 +21,9 @@
 
 			<p:panel>
 
-				<!-- 
-			<h3 style="margin-top: 0">Basic</h3>
-			<div class="ui-g">
-				<p:repeat value="#{homeController.mainCategoryList}" var="i">
-					<div class="ui-g-6 ui-md-4 ui-lg-2">
-						<p:button value="#{i}" icon="" style="width:200px" />
-					</div>
-				</p:repeat>
-			</div>
- -->
-
-				<h:panelGrid columns="1">
+				<h:panelGrid columns="1" width="100%">
 					<h:outputLabel>Categoria Principal</h:outputLabel>
-					<h:panelGrid id="mainCategory" style="width:100%">
+					<h:panelGrid id="mainCategory" width="100%">
 						<p:selectOneMenu value="#{homeController.selectedMainCategory}"
 							filter="true" filterMatchMode="contains">
 							<p:ajax listener="#{homeController.updateSubCategory}"

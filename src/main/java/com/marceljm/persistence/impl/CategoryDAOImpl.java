@@ -7,6 +7,8 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import com.marceljm.entity.MainSubCategory;
+import com.marceljm.entity.SubThirdCategory;
 import com.marceljm.persistence.CategoryDAO;
 
 @Repository
@@ -34,5 +36,19 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public List<String> selectThirdCategory(String subCategory) {
 		return (List<String>) manager.createQuery("SELECT DISTINCT thirdCategory FROM Product WHERE subCategory = '"
 				+ subCategory + "' ORDER BY thirdCategory").getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MainSubCategory> selectMainSubCategory() {
+		return (List<MainSubCategory>) manager.createQuery("SELECT a FROM MainSubCategory a ORDER BY id")
+				.getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SubThirdCategory> selectSubThirdCategory() {
+		return (List<SubThirdCategory>) manager.createQuery("SELECT a FROM SubThirdCategory a ORDER BY id")
+				.getResultList();
 	}
 }
