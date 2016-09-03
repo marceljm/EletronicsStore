@@ -14,43 +14,38 @@
 </h:head>
 
 <h:body style="margin:0; padding:0">
-
 	<pm:page>
-
+		<pm:header title="Loja de Eletrônicos" swatch="b"></pm:header>
 		<h:form>
-
-			<p:panel>
-
-				<h:panelGrid columns="1" width="100%">
-					<h:outputLabel>Categoria Principal</h:outputLabel>
-					<h:panelGrid id="mainCategory" width="100%">
-						<p:selectOneMenu value="#{homeController.selectedMainCategory}"
-							filter="true" filterMatchMode="contains">
-							<p:ajax listener="#{homeController.updateSubCategory}"
-								update="subCategory,thirdCategory" />
-							<f:selectItems value="#{homeController.mainCategoryList}" />
-						</p:selectOneMenu>
-					</h:panelGrid>
-					<h:outputLabel>Categoria Secundária</h:outputLabel>
-					<h:panelGrid id="subCategory" style="width:100%">
-						<p:selectOneMenu value="#{homeController.selectedSubCategory}"
-							filter="true" filterMatchMode="contains">
-							<p:ajax listener="#{homeController.updateThirdCategory}"
-								update="thirdCategory" />
-							<f:selectItems value="#{homeController.subCategoryList}" />
-						</p:selectOneMenu>
-					</h:panelGrid>
-					<h:panelGrid id="thirdCategory" style="width:100%">
-						<h:outputLabel rendered="#{homeController.thirdCategoryRendered}">Categoria Terciária</h:outputLabel>
-						<p:selectOneMenu value="#{homeController.selectedThirdCategory}"
-							filter="true" filterMatchMode="contains"
-							rendered="#{homeController.thirdCategoryRendered}">
-							<f:selectItems value="#{homeController.thirdCategoryList}" />
-						</p:selectOneMenu>
-					</h:panelGrid>
+			<p:panelGrid columns="4" styleClass="ui-responsive">
+				<h:panelGrid id="mainCategory" width="100%">
+					<p:selectOneMenu value="#{homeController.selectedMainCategory}"
+						filter="true" filterMatchMode="contains">
+						<p:ajax listener="#{homeController.updateSubCategory}"
+							update="subCategory,thirdCategory" />
+						<f:selectItems value="#{homeController.mainCategoryList}" />
+					</p:selectOneMenu>
 				</h:panelGrid>
-			</p:panel>
-
+				<h:panelGrid id="subCategory" width="100%">
+					<p:selectOneMenu value="#{homeController.selectedSubCategory}"
+						filter="true" filterMatchMode="contains">
+						<p:ajax listener="#{homeController.updateThirdCategory}"
+							update="thirdCategory" />
+						<f:selectItems value="#{homeController.subCategoryList}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:panelGrid id="thirdCategory" width="100%">
+					<p:selectOneMenu value="#{homeController.selectedThirdCategory}"
+						filter="true" filterMatchMode="contains"
+						rendered="#{homeController.thirdCategoryRendered}">
+						<f:selectItems value="#{homeController.thirdCategoryList}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:panelGrid id="searchButton" width="100%">
+					<p:commandButton value="Buscar" type="button" icon="ui-icon-search"
+						iconPos="right" styleClass="ui-btn-b" />
+				</h:panelGrid>
+			</p:panelGrid>
 		</h:form>
 	</pm:page>
 </h:body>
