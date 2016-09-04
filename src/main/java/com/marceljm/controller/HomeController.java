@@ -18,6 +18,7 @@ import com.marceljm.entity.Product;
 import com.marceljm.service.CategoryService;
 import com.marceljm.service.IconService;
 import com.marceljm.service.ProductService;
+import com.marceljm.util.TextUtil;
 
 @Controller
 @Scope("session")
@@ -88,14 +89,18 @@ public class HomeController {
 			List<String> subList = mainSubCategoryMap.get(mainCategory);
 			Collections.sort(subList, collator);
 			for (String subCategory : subList) {
-				TreeNode subNode = new DefaultTreeNode(new NodeCategory(subCategory, null, "fa fa-plus-circle"), mainNode);
+				TreeNode subNode = new DefaultTreeNode(new NodeCategory(subCategory, null, "fa fa-plus-circle"),
+						mainNode);
 
 				List<String> thirdList = subThirdCategoryMap.get(subCategory);
 				Collections.sort(thirdList, collator);
 				for (String thirdCategory : thirdList) {
-					if (thirdCategory.isEmpty())
-						thirdCategory = "-";
-					new DefaultTreeNode(new NodeCategory(thirdCategory, null, "fa fa-check-circle"), subNode);
+					new DefaultTreeNode(
+							new NodeCategory(
+									thirdCategory, TextUtil.normalize(mainCategory) + "/"
+											+ TextUtil.normalize(subCategory) + "/" + TextUtil.normalize(thirdCategory),
+									"fa fa-check-circle"),
+							subNode);
 				}
 			}
 		}
