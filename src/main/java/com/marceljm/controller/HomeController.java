@@ -99,7 +99,7 @@ public class HomeController {
 							new NodeCategory(
 									thirdCategory, TextUtil.normalize(mainCategory) + "/"
 											+ TextUtil.normalize(subCategory) + "/" + TextUtil.normalize(thirdCategory),
-									"fa fa-check-circle"),
+									"fa fa-search"),
 							subNode);
 				}
 			}

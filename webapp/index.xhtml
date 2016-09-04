@@ -17,16 +17,11 @@
 	<h:form>
 		<p:layout style="height:100%">
 			<p:layoutUnit position="west" size="400" style="height:100%">
-				<p:tree value="#{homeController.root}" var="i" animate="true"
-					style="width:100%;border:0px;height:100%">
-					<p:treeNode icon="#{i.icon}">
-						<h:outputText value="#{i.name}" />
-					</p:treeNode>
-				</p:tree>
+				<ui:include src="menu.xhtml" />
 			</p:layoutUnit>
 			<p:layoutUnit position="center">
-        		Center
-    		</p:layoutUnit>
+				<ui:include src="center.xhtml" />
+			</p:layoutUnit>
 		</p:layout>
 	</h:form>
 </h:body>
