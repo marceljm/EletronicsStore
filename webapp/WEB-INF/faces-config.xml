@@ -11,11 +11,8 @@
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 
 		<!-- PrimeFaces Mobile -->
-		<navigation-handler>
-			org.primefaces.mobile.application.MobileNavigationHandler
-		</navigation-handler>
-
-		<default-render-kit-id>PRIMEFACES_MOBILE</default-render-kit-id>
+		<!--navigation-handler> org.primefaces.mobile.application.MobileNavigationHandler</navigation-handler> 
+			<default-render-kit-id>PRIMEFACES_MOBILE</default-render-kit-id -->
 
 	</application>
 
