@@ -7,7 +7,7 @@
 	xmlns:pm="http://primefaces.org/mobile">
 
 <p:tree value="#{homeController.root}" var="i" animate="true"
-	style="width:100%;border:0px;height:100%">
+	style="width:100%;border:0px">
 	<p:treeNode icon="#{i.icon}">
 		<h:outputText value="#{i.name}" rendered="#{empty i.link}" />
 		<h:outputLink

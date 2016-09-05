@@ -6,9 +6,22 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile">
 
-<p:dataList value="#{homeController.productList}" lazy="true"
-	paginator="true" rows="10" var="i" style="width:100%">
-	<h:outputText value="#{i.name}" />
-</p:dataList>
+<p:dataTable value="#{homeController.productList}" lazy="true"
+	paginator="true" rows="5" var="i" style="width:100%">
+	<p:column headerText="Produto">
+		<h:outputText value="#{i.name}" />
+	</p:column>
+	<p:column headerText="Preço" style="text-align:center">
+		<h:outputText value="#{i.price}">
+			<f:convertNumber pattern="R$ #0.00" locale="pt_BR" />
+		</h:outputText>
+	</p:column>
+	<p:column headerText="Marca" style="text-align:center">
+		#{i.brand}
+	</p:column>
+	<p:column headerText="Imagem" style="background-color:white;text-align:center">
+		<p:graphicImage url="#{i.imageMedium}" height="150" />
+	</p:column>
+</p:dataTable>
 
 </html>
