@@ -11,15 +11,19 @@
 
 	<link rel="stylesheet" href="resources/css/style.css" type="text/css"
 		charset="utf-8" />
+
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{homeController.onLoad}" />
+	</f:metadata>
 </h:head>
 
 <h:body>
-	<h:form>
+	<h:form id="form">
 		<p:layout style="height:100%">
 			<p:layoutUnit position="west" size="400" style="height:100%">
 				<ui:include src="menu.xhtml" />
 			</p:layoutUnit>
-			<p:layoutUnit position="center">
+			<p:layoutUnit position="center" style="width:100%;border:0">
 				<ui:include src="center.xhtml" />
 			</p:layoutUnit>
 		</p:layout>

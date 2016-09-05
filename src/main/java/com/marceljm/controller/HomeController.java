@@ -2,6 +2,7 @@ package com.marceljm.controller;
 
 import java.text.Collator;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,7 @@ import com.marceljm.service.CategoryService;
 import com.marceljm.service.IconService;
 import com.marceljm.service.ProductService;
 import com.marceljm.util.TextUtil;
+import com.ocpsoft.pretty.PrettyContext;
 
 @Controller
 @Scope("session")
@@ -41,6 +43,7 @@ public class HomeController {
 	/* maps */
 	private Map<String, List<String>> mainSubCategoryMap;
 	private Map<String, List<String>> subThirdCategoryMap;
+	private Map<String, String> linkCategoryMap = new HashMap<String, String>();
 
 	/* selection */
 	private String selectedMainCategory;
@@ -95,16 +98,26 @@ public class HomeController {
 				List<String> thirdList = subThirdCategoryMap.get(subCategory);
 				Collections.sort(thirdList, collator);
 				for (String thirdCategory : thirdList) {
-					new DefaultTreeNode(
-							new NodeCategory(
-									thirdCategory, TextUtil.normalize(mainCategory) + "/"
-											+ TextUtil.normalize(subCategory) + "/" + TextUtil.normalize(thirdCategory),
-									"fa fa-search"),
-							subNode);
+					String link;
+					if (!thirdCategory.isEmpty()) {
+						link = TextUtil.normalize(mainCategory) + "/" + TextUtil.normalize(subCategory) + "/"
+								+ TextUtil.normalize(thirdCategory);
+						linkCategoryMap.put(link, mainCategory + " / " + subCategory + " / " + thirdCategory);
+					} else {
+						link = TextUtil.normalize(mainCategory) + "/" + TextUtil.normalize(subCategory) + "/-";
+						linkCategoryMap.put(link, mainCategory + " / " + subCategory);
+						thirdCategory = "-";
+					}
+					new DefaultTreeNode(new NodeCategory(thirdCategory, link, "fa fa-search"), subNode);
 				}
 			}
 		}
 		return root;
+	}
+
+	public void onLoad() {
+		String url = PrettyContext.getCurrentInstance().getRequestURL().toURL().replaceAll("/produto/", "");
+		productList = productService.select(linkCategoryMap.get(url));
 	}
 
 	/* listeners */

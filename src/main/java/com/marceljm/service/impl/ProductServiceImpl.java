@@ -20,5 +20,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> select(String mainCategory, String subCategory, String thirdCategory) {
 		return dao.select(mainCategory, subCategory, thirdCategory);
 	}
+	
+	@Override
+	public List<Product> select(String path) {
+		return dao.select(path);
+	}	
 
 }

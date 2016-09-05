@@ -8,4 +8,6 @@ public interface ProductService {
 
 	public List<Product> select(String mainCategory, String subCategory, String thirdCategory);
 
+	public List<Product> select(String path);
+
 }

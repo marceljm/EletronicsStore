@@ -6,6 +6,9 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pm="http://primefaces.org/mobile">
 
-<h:outputText value="test" />
+<p:dataList value="#{homeController.productList}" lazy="true"
+	paginator="true" rows="10" var="i" style="width:100%">
+	<h:outputText value="#{i.name}" />
+</p:dataList>
 
 </html>

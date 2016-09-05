@@ -9,7 +9,10 @@
 <p:tree value="#{homeController.root}" var="i" animate="true"
 	style="width:100%;border:0px;height:100%">
 	<p:treeNode icon="#{i.icon}">
-		<h:outputText value="#{i.name}" />
+		<h:outputText value="#{i.name}" rendered="#{empty i.link}" />
+		<h:outputLink
+			value="http://localhost:8080/EletronicsStore/produto/#{i.link}"
+			rendered="#{not empty i.link}">#{i.name}</h:outputLink>
 	</p:treeNode>
 </p:tree>
 

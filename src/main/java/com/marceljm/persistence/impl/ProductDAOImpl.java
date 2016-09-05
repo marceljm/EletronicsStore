@@ -25,4 +25,11 @@ public class ProductDAOImpl implements ProductDAO {
 				.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> select(String path) {
+		return (List<Product>) manager.createQuery("SELECT a FROM Product a WHERE path = '" + path + "' ORDER BY price")
+				.getResultList();
+	}
+
 }
